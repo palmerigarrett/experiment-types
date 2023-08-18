@@ -26,4 +26,7 @@ jobs:
         yarn remove-build && npx rollup -c --bundleConfigAsCjs
         npm publish
 
+    env:
+        NODE_TOKEN: ${{ secrets.NPM_TOKEN }}
+
         
