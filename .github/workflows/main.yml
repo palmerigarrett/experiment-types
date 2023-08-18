@@ -1,0 +1,29 @@
+name: Publish to NPM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  execute_command:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: yarn install
+      run: |
+        yarn install
+
+    - name: remove previous build
+      run: |
+        rimraf types && rimraf esm && rimraf cjs
+
+    - name: Build and Publish
+      run: |
+        yarn remove-build && rollup -c --bundleConfigAsCjs
+        npm publish
+
+        
