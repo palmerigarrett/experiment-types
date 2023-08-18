@@ -10,3 +10,5 @@ To contribute:
 
 >For example: If a new directory `experimentGroup` is created. Use `index.ts` at `/experimentGroup/index.ts` to define and export your type/interface/etc. Then in `/src/index.ts`, add `export * from './experimentGroup'`.
 
+
+On push to main, if the above was done correctly, a github action will trigger and publish the latest version of the package to be used.
