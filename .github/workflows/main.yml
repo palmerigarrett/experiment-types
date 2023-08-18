@@ -10,28 +10,30 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
+        # Setup .npmrc file to publish to npm
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+        
+      - name: Install dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn
 
-    - name: Set up Node.js 16
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-      
-    - name: Install dependencies
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      run: yarn
+      - name: remove previous build
+        run: |
+          rm -rf types && rm -rf esm && rm -rf cjs
 
-    - name: remove previous build
-      run: |
-        rm -rf types && rm -rf esm && rm -rf cjs
-
-    - name: Build and Publish
-      run: |
-        yarn remove-build && npx rollup -c --bundleConfigAsCjs
-        npm publish
-      
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Bundle with rollup
+        run: |
+          yarn remove-build && npx rollup -c --bundleConfigAsCjs
+     
+      - name: Publish
+        run: npm ci
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
         
