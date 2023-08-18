@@ -23,7 +23,7 @@ jobs:
 
     - name: Build and Publish
       run: |
-        yarn remove-build && rollup -c --bundleConfigAsCjs
+        yarn remove-build && npx rollup -c --bundleConfigAsCjs
         npm publish
 
         
