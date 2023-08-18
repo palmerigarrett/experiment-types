@@ -1,28 +1,24 @@
 {
-  "files": ["src/index.ts"],
   "compilerOptions": {
-    "target": "es2015",
-    "module": "es2015",
+    "noEmitOnError": true,
+    "lib": ["es2017"],                            
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "target": "es6",
+    "outDir": "types",  // Output directory for both .d.ts and .js files
     "declaration": true,
-    "outDir": "./dist",
-    "noEmit": false,
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
+    "declarationDir": "types",  // Output directory specifically for .d.ts files
+    "skipLibCheck": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
-  }
+    "noFallthroughCasesInSwitch": true,
+    "module": "es6",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true
+  },
+  "include": ["./src/**/*.ts"],
+  "exclude": ["node_modules", "types", "esm", "cjs"]
 }
