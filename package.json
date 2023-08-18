@@ -7,17 +7,17 @@
   "exports": {
     ".": {
       "import": {
-          "types": "./types/index.d.ts",
-          "default": "./esm/index.js"
+        "types": "./types/index.d.ts",
+        "default": "./esm/index.js"
       },
       "require": {
-          "types": "./types/index.d.ts",
-          "default": "./cjs/index.cjs"
+        "types": "./types/index.d.ts",
+        "default": "./cjs/index.cjs"
       }
     }
   },
   "scripts": {
-    "remove-build": "rimraf types && rimraf esm && rimraf cjs",
+    "remove-build": "rm -rf types && rm -rf esm && rm -rf cjs",
     "build": "yarn remove-build && rollup -c --bundleConfigAsCjs",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",

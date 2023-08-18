@@ -19,7 +19,7 @@ jobs:
 
     - name: remove previous build
       run: |
-        rimraf types && rimraf esm && rimraf cjs
+        rm -rf types && rm -rf esm && rm -rf cjs
 
     - name: Build and Publish
       run: |
